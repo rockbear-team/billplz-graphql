@@ -9,7 +9,7 @@ Make sure you have [NodeJS](https://nodejs.org/en/) installed on your machine.
 
 ### 2. Clone repo and Install Dependencies
 ```
-git clone
+git clone https://github.com/Akim95/billplz-graphql.git
 npm install
 ```
 
