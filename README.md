@@ -74,3 +74,6 @@ mutation {
 ```
 
 Check at ```Documentation Explorer``` for more references.
+
+## License
+Billplz GraphQL Server is [GNU GPLv3 - licensed](LICENSE).
