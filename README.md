@@ -66,9 +66,8 @@ Create a collection:
 
 ```
 mutation {
-  createCollection(title: "COLLECTION TITLE") {
+  createCollection(collection: { title: "COLLECTION TITLE" }) {
     id
-    title
   }
 }
 ```
