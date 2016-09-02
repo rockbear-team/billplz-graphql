@@ -1,6 +1,7 @@
 import {
   GraphQLSchema,
   GraphQLObjectType,
+  GraphQLInputObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLBoolean,
@@ -157,6 +158,61 @@ const Query = new GraphQLObjectType({
   }),
 });
 
+// four(4) input type for mutation operations
+const CollectionInputType = new GraphQLInputObjectType({
+  name: 'CollectionInputType',
+  description: 'A Collection input type.',
+  fields: () => ({
+    title: { type: new GraphQLNonNull(GraphQLString) },
+  }),
+});
+
+const OpenCollectionInputType = new GraphQLInputObjectType({
+  name: 'OpenCollectionInputType',
+  description: 'An Open Collection input type.',
+  fields: () => ({
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    description: { type: new GraphQLNonNull(GraphQLString) },
+    amount: { type: new GraphQLNonNull(GraphQLInt) },
+    fixed_amount: { type: GraphQLBoolean },
+    fixed_quantity: { type: GraphQLBoolean },
+    payment_button: { type: PaymentButtonType },
+    reference_1_label: { type: GraphQLString },
+    reference_2_label: { type: GraphQLString },
+    email_link: { type: GraphQLString },
+    tax: { type: GraphQLInt },
+  }),
+});
+
+const BillInputType = new GraphQLInputObjectType({
+  name: 'BillInputType',
+  description: 'A Bill input type.',
+  fields: () => ({
+    collection_id: { type: new GraphQLNonNull(GraphQLString) },
+    email: { type: new GraphQLNonNull(GraphQLString) },
+    mobile: { type: new GraphQLNonNull(GraphQLString) },
+    firstName: { type: new GraphQLNonNull(GraphQLString) },
+    lastName: { type: new GraphQLNonNull(GraphQLString) },
+    amount: { type: new GraphQLNonNull(GraphQLInt) },
+    callback_url: { type: new GraphQLNonNull(GraphQLString) },
+    description: { type: new GraphQLNonNull(GraphQLString) },
+    due_at: { type: GraphQLString },
+    redirect_url: { type: GraphQLString },
+    deliver: { type: GraphQLBoolean },
+    reference_1_label: { type: GraphQLString },
+    reference_1: { type: GraphQLString },
+    reference_2_label: { type: GraphQLString },
+    reference_2: { type: GraphQLString },
+  }),
+});
+
+const deleteBillInputType = new GraphQLInputObjectType({
+  name: 'deleteBillInputType',
+  fields: () => ({
+    BILL_ID: { type: new GraphQLNonNull(GraphQLString) },
+  }),
+});
+
 // root mutation
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -164,65 +220,34 @@ const Mutation = new GraphQLObjectType({
   fields: {
     createCollection: {
       description: 'Create a collection.',
-      args: {
-        title: { type: new GraphQLNonNull(GraphQLString) },
-      },
+      args: { collection: { type: CollectionInputType } },
       type: CollectionType,
-      resolve: (_, { title }) => {
-        return createCollection(title);
+      resolve: (_, { collection }) => {
+        return createCollection(collection.title);
       },
     },
     createOpenCollection: {
       type: OpenCollectionType,
       description: 'Create an open collection',
-      args: {
-        title: { type: new GraphQLNonNull(GraphQLString) },
-        description: { type: new GraphQLNonNull(GraphQLString) },
-        amount: { type: new GraphQLNonNull(GraphQLInt) },
-        fixed_amount: { type: GraphQLBoolean },
-        fixed_quantity: { type: GraphQLBoolean },
-        payment_button: { type: PaymentButtonType },
-        reference_1_label: { type: GraphQLString },
-        reference_2_label: { type: GraphQLString },
-        email_link: { type: GraphQLString },
-        tax: { type: GraphQLInt },
-      },
-      resolve: (_, args) => {
-        return createOpenCollection(args);
+      args: { openCollection: { type: OpenCollectionInputType } },
+      resolve: (_, { openCollection }) => {
+        return createOpenCollection(openCollection);
       },
     },
     createBill: {
       type: BillType,
       description: 'Create a bill.',
-      args: {
-        collection_id: { type: new GraphQLNonNull(GraphQLString) },
-        email: { type: new GraphQLNonNull(GraphQLString) },
-        mobile: { type: new GraphQLNonNull(GraphQLString) },
-        firstName: { type: new GraphQLNonNull(GraphQLString) },
-        lastName: { type: new GraphQLNonNull(GraphQLString) },
-        amount: { type: new GraphQLNonNull(GraphQLInt) },
-        callback_url: { type: new GraphQLNonNull(GraphQLString) },
-        description: { type: new GraphQLNonNull(GraphQLString) },
-        due_at: { type: GraphQLString },
-        redirect_url: { type: GraphQLString },
-        deliver: { type: GraphQLBoolean },
-        reference_1_label: { type: GraphQLString },
-        reference_1: { type: GraphQLString },
-        reference_2_label: { type: GraphQLString },
-        reference_2: { type: GraphQLString },
-      },
-      resolve: (_, args) => {
-        return createBill(args);
+      args: { bill: { type: BillInputType } },
+      resolve: (_, { bill }) => {
+        return createBill(bill);
       },
     },
     deleteBill: {
       type: GraphQLString,
       description: 'Delete a bill.',
-      args: {
-        BILL_ID: { type: new GraphQLNonNull(GraphQLString) },
-      },
-      resolve: (_, { BILL_ID }) => {
-        return deleteBill(BILL_ID);
+      args: { delBill: { type: deleteBillInputType } },
+      resolve: (_, { delBill }) => {
+        return deleteBill(delBill.BILL_ID);
       },
     },
   },
