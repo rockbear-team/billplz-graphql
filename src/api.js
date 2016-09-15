@@ -9,7 +9,8 @@ let API_ENDPOINT;
 
 if (NODE_ENV === 'staging') {
   API_ENDPOINT = 'https://billplz-staging.herokuapp.com/';
-} else {
+}
+if (NODE_ENV === 'production') {
   API_ENDPOINT = 'https://www.billplz.com/api/v3/';
 }
 
