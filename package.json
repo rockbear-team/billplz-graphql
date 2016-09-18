@@ -1,6 +1,6 @@
 {
   "name": "billplz-graphql",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Billplz GraphQL Server",
   "main": "dist/index.js",
   "scripts": {
