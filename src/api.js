@@ -198,5 +198,30 @@ const deleteBill = function (BILL_ID) {
   });
 };
 
+/*
+* checkAccountVerification() get an account verification status
+* based on BANK_ACCOUNT_NUMBER
+*
+*  @param {String} BANK_ACCOUNT_NUMBER
+*/
+const checkAccountVerification = function (BANK_ACCOUNT_NUMBER) {
+  return axios({
+    method: 'get',
+    url: `${API_ENDPOINT}/api/v3/check/bank_account_number/${BANK_ACCOUNT_NUMBER}`,
+    auth: {
+      username: BILLPLZ_API_SECRET_KEY,
+      password: '',
+    },
+  }).then(function (res) {
+    return res.data;
+  }).catch(function (err) {
+    /*
+    * for debugging
+    * console.log(JSON.stringify(err.response.data.error));
+    */
+    throw new Error(err.response.data.error.message);
+  });
+};
+
 // eslint-disable-next-line
-export { getBill, createCollection, createOpenCollection, createBill, deleteBill };
+export { getBill, createCollection, createOpenCollection, createBill, deleteBill, checkAccountVerification };

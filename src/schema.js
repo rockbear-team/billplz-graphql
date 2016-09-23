@@ -1,7 +1,13 @@
 import { buildSchema } from 'graphql';
 
 // import api
-import { getBill, createCollection, createOpenCollection, createBill, deleteBill } from './api';
+import { getBill,
+  createCollection,
+  createOpenCollection,
+  createBill,
+  deleteBill,
+  checkAccountVerification,
+} from './api';
 
 // billplz type
 const schema = buildSchema(`
@@ -45,8 +51,12 @@ const schema = buildSchema(`
       paid_amount: Int
       url: String
     }
+    type AccountVerification {
+      name: String
+    }
     type Query {
       bill(BILL_ID: String!): BillType
+      checkAccountVerification(BANK_ACCOUNT_NUMBER: String!): AccountVerification
     }
     type Mutation {
       createCollection(title: String!): CollectionType
@@ -101,6 +111,9 @@ const root = {
   },
   deleteBill: ({ BILL_ID }) => {
     return deleteBill(BILL_ID);
+  },
+  checkAccountVerification: ({ BANK_ACCOUNT_NUMBER }) => {
+    return checkAccountVerification(BANK_ACCOUNT_NUMBER);
   },
 };
 
