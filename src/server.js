@@ -5,10 +5,10 @@ import { schema, root } from './schema';
 const app = express();
 
 /*
-* by default server run on port '3000'
+* by default server run on port '4000'
 * you can change it if you want
 */
-const GraphQLPort = 3000;
+const GraphQLPort = 4000;
 
 /*
 * you can disable graphiql IDE and pretty options
