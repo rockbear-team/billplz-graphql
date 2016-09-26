@@ -6,7 +6,7 @@
 npm install
 ```
 
-* Change COLLECTION_ID ```src/Appjs```:
+* Change COLLECTION_ID ```src/App.js```:
 
 ```javascript
 const collection_id = 'COLLECTION_ID_HERE';
