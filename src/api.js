@@ -41,7 +41,7 @@ const getBill = function (BILL_ID) {
     * for debugging
     * console.log(JSON.stringify(err.response.data.error));
     */
-    throw new Error(err.response.data.error.message);
+    throw new Error(err);
   });
 };
 
@@ -83,7 +83,7 @@ const createOpenCollection = function (args) {
     * for debugging
     * console.log(JSON.stringify(err.response.data.error));
     */
-    throw new Error(err.response.data.error.message);
+    throw new Error(err);
   });
 };
 
@@ -116,7 +116,7 @@ const createCollection = function (title) {
     * for debugging
     * console.log(JSON.stringify(err.response.data.error));
     */
-    throw new Error(err.response.data.error.message);
+    throw new Error(err);
   });
 };
 
@@ -163,7 +163,7 @@ const createBill = function (args) {
     * for debugging
     * console.log(JSON.stringify(err.response.data.error));
     */
-    throw new Error(err.response.data.error.message);
+    throw new Error(err);
   });
 };
 
@@ -194,7 +194,7 @@ const deleteBill = function (BILL_ID) {
     * for debugging
     * console.log(JSON.stringify(err.response.data.error));
     */
-    throw new Error(err.response.data.error.message);
+    throw new Error(err);
   });
 };
 
@@ -219,7 +219,7 @@ const checkAccountVerification = function (BANK_ACCOUNT_NUMBER) {
     * for debugging
     * console.log(JSON.stringify(err.response.data.error));
     */
-    throw new Error(err.response.data.error.message);
+    throw new Error(err);
   });
 };
 
