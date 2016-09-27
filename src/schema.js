@@ -7,6 +7,7 @@ import { getBill,
   createBill,
   deleteBill,
   checkAccountVerification,
+  collectionStatus,
 } from './api';
 
 // billplz type
@@ -54,6 +55,13 @@ const schema = buildSchema(`
     type AccountVerification {
       name: String
     }
+    enum statusType {
+      deactivate
+      activate
+    }
+    type collectionStatusType {
+      status: statusType
+    }
     type Query {
       bill(BILL_ID: String!): BillType
       checkAccountVerification(BANK_ACCOUNT_NUMBER: String!): AccountVerification
@@ -89,12 +97,13 @@ const schema = buildSchema(`
         reference_2_label: String,
       ): BillType
       deleteBill(BILL_ID: String!): String
+      collectionStatus(COLLECTION_ID: String!, status: statusType!): collectionStatusType
     }
   `);
 
 /*
 * root operations
-* @param 'args' is an argument objects
+* @param 'args' is an objects argument
 */
 const root = {
   bill: ({ BILL_ID }) => {
@@ -115,6 +124,10 @@ const root = {
   checkAccountVerification: ({ BANK_ACCOUNT_NUMBER }) => {
     return checkAccountVerification(BANK_ACCOUNT_NUMBER);
   },
+  collectionStatus: (args) => {
+    collectionStatus(args);
+    return args;
+  }
 };
 
 export { schema, root };

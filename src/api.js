@@ -8,10 +8,10 @@ const {
 let API_ENDPOINT;
 
 if (NODE_ENV === 'staging') {
-  API_ENDPOINT = 'https://billplz-staging.herokuapp.com/';
+  API_ENDPOINT = 'https://billplz-staging.herokuapp.com/api/v3';
 }
 if (NODE_ENV === 'production') {
-  API_ENDPOINT = 'https://www.billplz.com/api/v3/';
+  API_ENDPOINT = 'https://www.billplz.com/api/v3';
 }
 
 /*
@@ -23,7 +23,7 @@ if (NODE_ENV === 'production') {
 const getBill = function (BILL_ID) {
   return axios({
     method: 'get',
-    url: `${API_ENDPOINT}/api/v3/bills/${BILL_ID}`,
+    url: `${API_ENDPOINT}/bills/${BILL_ID}`,
     auth: {
       username: BILLPLZ_API_SECRET_KEY,
       password: '',
@@ -53,7 +53,7 @@ const getBill = function (BILL_ID) {
 const createOpenCollection = function (args) {
   return axios({
     method: 'post',
-    url: `${API_ENDPOINT}/api/v3/open_collections`,
+    url: `${API_ENDPOINT}/open_collections`,
     data: {
       title: args.title,
       description: args.description,
@@ -95,7 +95,7 @@ const createOpenCollection = function (args) {
 const createCollection = function (title) {
   return axios({
     method: 'post',
-    url: `${API_ENDPOINT}/api/v3/collections`,
+    url: `${API_ENDPOINT}/collections`,
     data: {
       title,
     },
@@ -129,7 +129,7 @@ const createCollection = function (title) {
 const createBill = function (args) {
   return axios({
     method: 'post',
-    url: `${API_ENDPOINT}/api/v3/bills`,
+    url: `${API_ENDPOINT}/bills`,
     data: {
       collection_id: args.collection_id,
       email: args.email,
@@ -176,7 +176,7 @@ const createBill = function (args) {
 const deleteBill = function (BILL_ID) {
   return axios({
     method: 'delete',
-    url: `${API_ENDPOINT}/api/v3/bills/${BILL_ID}`,
+    url: `${API_ENDPOINT}/bills/${BILL_ID}`,
     auth: {
       username: BILLPLZ_API_SECRET_KEY,
       password: '',
@@ -207,7 +207,32 @@ const deleteBill = function (BILL_ID) {
 const checkAccountVerification = function (BANK_ACCOUNT_NUMBER) {
   return axios({
     method: 'get',
-    url: `${API_ENDPOINT}/api/v3/check/bank_account_number/${BANK_ACCOUNT_NUMBER}`,
+    url: `${API_ENDPOINT}/check/bank_account_number/${BANK_ACCOUNT_NUMBER}`,
+    auth: {
+      username: BILLPLZ_API_SECRET_KEY,
+      password: '',
+    },
+  }).then(function (res) {
+    return res.data;
+  }).catch(function (err) {
+    /*
+    * for debugging
+    * console.log(JSON.stringify(err.response.data.error));
+    */
+    throw new Error(err);
+  });
+};
+
+/*
+* collectionStatus() for change a collection status to active or inactive
+* based on COLLECTION_ID and status
+*
+*  @param {Object} args
+*/
+const collectionStatus = function (args) {
+  return axios({
+    method: 'post',
+    url: `${API_ENDPOINT}/collections/${args.COLLECTION_ID}/${args.status}`,
     auth: {
       username: BILLPLZ_API_SECRET_KEY,
       password: '',
@@ -224,4 +249,4 @@ const checkAccountVerification = function (BANK_ACCOUNT_NUMBER) {
 };
 
 // eslint-disable-next-line
-export { getBill, createCollection, createOpenCollection, createBill, deleteBill, checkAccountVerification };
+export { getBill, createCollection, createOpenCollection, createBill, deleteBill, checkAccountVerification, collectionStatus };
