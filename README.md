@@ -1,5 +1,7 @@
 # BILLPLZ GRAPHQL SERVER
 
+[![license img](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
+
 Based on [BILLPLZ v3 API](https://www.billplz.com/api#v3).
 
 ## Running the server
