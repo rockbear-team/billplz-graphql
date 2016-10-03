@@ -4,6 +4,8 @@
 
 Based on [BILLPLZ v3 API](https://www.billplz.com/api#v3).
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Running the server
 
 ### 1. Install NodeJS
