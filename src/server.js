@@ -5,23 +5,23 @@ import { schema, root } from './schema';
 const app = express();
 
 /*
-* by default server run on port '4000'
+* by default server run on port '5000'
 * you can change it if you want
 */
-const GraphQLPort = 4000;
+app.set('port', (process.env.PORT || 5000));
 
 /*
 * you can disable graphiql IDE and pretty options
 * by change value from 'true' to 'false'
 */
 app.use('/graphql', graphQLHTTP({
-  graphiql: true,
+  graphiql: process.env.NODE_ENV === 'staging' ? true : false,
   pretty: true,
   rootValue: root,
   schema,
 }));
 
-app.listen(GraphQLPort, () => {
+app.listen(app.get('port'), () => {
   // eslint-disable-next-line
-  console.log(`GraphQL run on port ${GraphQLPort}`);
+  console.log(`GraphQL run on port ${app.get('port')}`);
 });
