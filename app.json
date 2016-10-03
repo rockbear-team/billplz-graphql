@@ -1,0 +1,7 @@
+{
+  "name": "BILLPLZ GRAPHQL SERVER",
+  "description": "Billplz Graphql Server based on BILLPLZ v3 API.",
+  "repository": "https://github.com/Akim95/billplz-graphql",
+  "logo": "https://www.billplz.com/api/images/logo-billplz.png",
+  "keywords": ["billplz", "graphql"]
+}
