@@ -12,9 +12,15 @@ Based on [BILLPLZ v3 API](https://www.billplz.com/api#v3).
 Make sure you have [NodeJS](https://nodejs.org/en/) installed on your machine.
 
 ### 2. Clone repo and Install Dependencies
+- npm
 ```
 git clone https://github.com/Akim95/billplz-graphql.git
 npm install
+```
+- yarn
+```
+git clone https://github.com/Akim95/billplz-graphql.git
+yarn install
 ```
 
 ### 3. GET a Billplz API key
