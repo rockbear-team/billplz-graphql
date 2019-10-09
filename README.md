@@ -85,4 +85,4 @@ mutation {
 Check at ```Documentation Explorer``` for more references.
 
 ## License
-Billplz GraphQL Server is [MIT- licensed](LICENSE).
+Billplz GraphQL Server is [MIT- licensed](LICENSE.md).
