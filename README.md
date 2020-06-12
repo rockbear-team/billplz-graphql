@@ -2,7 +2,7 @@
 
 [![license img](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
 
-Based on [BILLPLZ v3 API](https://www.billplz.com/api#v3).
+Based on [BILLPLZ v3 and v4 API](https://www.billplz.com/api).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
