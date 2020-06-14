@@ -1,5 +1,6 @@
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
+import { buildFederatedSchema } from '@apollo/federation'
 import base64 from 'base-64'
 import typeDefs from './schema'
 import resolvers from './resolvers'
@@ -20,8 +21,7 @@ const app = express()
 app.set('port', process.env.PORT || 5000)
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema: buildFederatedSchema({ typeDefs, resolvers }),
   dataSources: () => ({
     billplzAPI: new BillplzAPI()
   }),

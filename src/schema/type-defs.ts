@@ -55,13 +55,13 @@ const typeDefs = gql`
     active: Boolean
     category: String
   }
-  type Query {
+  extend type Query {
     getCollection(COLLECTION_ID: ID!): CollectionType
     getOpenCollection(COLLECTION_ID: ID!): OpenCollectionType
     getBill(BILL_ID: ID!): BillType
     getPaymentGateways: [PaymentGatewayType]
   }
-  type Mutation {
+  extend type Mutation {
     createCollection(title: String!): CollectionType
     createOpenCollection(
       title: String!
