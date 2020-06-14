@@ -45,3 +45,7 @@ dist/
 
 # env var
 .env
+
+# others
+.DS_Store
+src/.DS_Store
