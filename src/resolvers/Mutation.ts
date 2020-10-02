@@ -1,14 +1,16 @@
+import { createBillArgs, createCollectionArgs, createOpenCollectionArgs, deleteBillArgs } from './types'
+
 const Mutation = {
-  createCollection: (_: any, { title }: any, { dataSources }: any) => {
+  createCollection: (_: any, { title }: createCollectionArgs, { dataSources }: any) => {
     return dataSources.billplzAPI.postCollection(title)
   },
-  createOpenCollection: (_: any, args: any, { dataSources }: any) => {
+  createOpenCollection: (_: any, args: createOpenCollectionArgs, { dataSources }: any) => {
     return dataSources.billplzAPI.postOpenCollection(args)
   },
-  createBill: (_: any, args: any, { dataSources }: any) => {
+  createBill: (_: any, args: createBillArgs, { dataSources }: any) => {
     return dataSources.billplzAPI.postBill(args)
   },
-  deleteBill: (_: any, { BILL_ID }: any, { dataSources }: any) => {
+  deleteBill: (_: any, { BILL_ID }: deleteBillArgs, { dataSources }: any) => {
     return dataSources.billplzAPI.deleteBill(BILL_ID)
   }
 }
