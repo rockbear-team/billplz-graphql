@@ -34,3 +34,15 @@ export interface createBillArgs {
 export interface deleteBillArgs {
   BILL_ID: string
 }
+
+export interface getCollectionArgs {
+  COLLECTION_ID: string
+}
+
+export interface getOpenCollectionArgs {
+  COLLECTION_ID: string
+}
+
+export interface getBillArgs {
+  BILL_ID: string
+}
